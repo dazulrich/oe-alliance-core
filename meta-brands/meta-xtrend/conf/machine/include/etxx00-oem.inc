@@ -5,14 +5,22 @@ BRAND_OEM = "xtrend"
 
 MACHINE_NAME = "\
 ${@bb.utils.contains('MACHINEBUILD', 'gi11000', 'ET11000' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'beyonwizu4', 'U4' , '', d)}\
 "
 
 MACHINE_BRAND = "\
 ${@bb.utils.contains('MACHINEBUILD', 'gi11000', 'Galaxy Innovations' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'beyonwizu4', 'Beyonwiz' , '', d)}\
 "
 
 IMAGEDIR ?= "\
 ${@bb.utils.contains('MACHINEBUILD', 'gi11000', 'et1x000' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'beyonwizu4', 'beyonwiz/u4' , '', d)}\
+"
+
+MACHINE_DRIVER = "\
+${@bb.utils.contains('MACHINEBUILD', 'gi11000', 'et1x000' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'beyonwizu4', 'beyonwizu4' , '', d)}\
 "
 
 MTD_ROOTFS = "mmcblk0p4"
@@ -23,7 +31,7 @@ ROOTFS_FILE = "rootfs.tar.bz2"
 IMAGEDIR ?= "${MACHINE}"
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
-    et-dvb-modules-${MACHINE} \
+    et-dvb-modules-${MACHINE_DRIVER} \
     et-initrd-${MACHINE} \
     "
 
@@ -34,15 +42,7 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
     kernel-module-cdfs \
     "
 
-EXTRA_IMAGEDEPENDS += "\
-    ${@bb.utils.contains('MACHINEBUILD', 'gi11000', ' enigma2-plugin-systemplugins-vfdcontrol' , '', d)} \
-    "
-
-MACHINE_EXTRA_RDEPENDS += "\
-    ${@bb.utils.contains('MACHINEBUILD', 'gi11000', ' enigma2-plugin-systemplugins-vfdcontrol' , '', d)} \
-    "
-
-MACHINE_EXTRA_RRECOMMENDS = " \
+MACHINE_EXTRA_RRECOMMENDS += " \
     ${@bb.utils.contains("GST_VERSION", "1.0", "gstreamer1.0-plugin-dvbmediasink", "gst-plugin-dvbmediasink", d)} \
     "
 
@@ -59,7 +59,9 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-etxx00"
 PREFERRED_PROVIDER_virtual/blindscan-dvbs = "et-blindscan-utils-${MACHINE}"
 PREFERRED_PROVIDER_virtual/blindscan-dvbc = "et-blindscan-utils-${MACHINE}"
 
-MACHINE_FEATURES += "alsa 3dtv switchoff hdmicec omb blindscan-tbs"
+MACHINE_FEATURES += "alsa 3dtv switchoff hdmicec omb  \
+    ${@bb.utils.contains('MACHINEBUILD', 'beyonwizu4', 'dvbc-only' , 'blindscan-tbs', d)} \
+"
 
 BOOTLOGO_FILENAME = "splash.bin"
 

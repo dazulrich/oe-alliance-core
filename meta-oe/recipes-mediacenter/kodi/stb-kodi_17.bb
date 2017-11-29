@@ -5,8 +5,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=930e2a5f63425d8dd72dbd7391c43c46"
 
-PR = "r12"
-
 DEFAULT_PREFERENCE = "-1"
 
 FILESPATH =. "${FILE_DIRNAME}/kodi-17:"
@@ -70,12 +68,17 @@ DEPENDS = " \
             libupnp \
             libshairport \
             libnfs \
+            alsa-lib \
+            alsa-plugins \
           "
 
 PROVIDES = "xbmc"
 
-SRCREV = "fc1619b118f6d503f920a49cf4ac4afcd0dd6b41"
-PV = "17.1+gitr${SRCPV}"
+SRCREV = "a9a7a20071bfd759e72e7053cee92e6f5cfb5e48"
+
+PV = "17.6+git${SRCPV}"
+PKGV = "17.6+git${GITPKGV}"
+
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Krypton \
            file://0003-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
            file://0006-Disable-DVD-support.patch \
@@ -94,7 +97,7 @@ SRC_URI_append_libc-musl = " \
            file://0002-Remove-FILEWRAP.patch \
 "
 
-inherit autotools-brokensep gettext pythonnative
+inherit autotools-brokensep gettext gitpkgv pythonnative
 
 S = "${WORKDIR}/git"
 
@@ -197,6 +200,7 @@ RRECOMMENDS_${PN}_append = " \
    python-sqlite3 \
    python-compression \
    python-profile \
+   python-mmap \
    libcurl \
    lsb \
    os-release \

@@ -9,12 +9,12 @@ RDEPENDS_${PN} = "ffmpeg"
 
 inherit gitpkgv
 
-PV = "30+git${SRCPV}"
-PKGV = "30+git${GITPKGV}"
+PV = "35+gitr${SRCPV}"
+PKGV = "35+gitr${GITPKGV}"
 
 PR = "r0"
 
-SRCREV = "4b03810d387a17427237817ea3e44832d86548fb"
+SRCREV = "74c7263cd7ed3a8074cafecb801d81d50379f5cd"
 SRC_URI = " \
     git://github.com/samsamsam-iptvplayer/exteplayer3.git;branch=master \
 "
@@ -36,6 +36,10 @@ SOURCE_FILES =+ "playback/playback.c"
 SOURCE_FILES =+ "external/ffmpeg/src/bitstream.c"
 SOURCE_FILES =+ "external/ffmpeg/src/latmenc.c"
 SOURCE_FILES =+ "external/ffmpeg/src/mpeg4audio.c"
+SOURCE_FILES =+ "external/flv2mpeg4/src/m4vencode.c"
+SOURCE_FILES =+ "external/flv2mpeg4/src/flvdecoder.c"
+SOURCE_FILES =+ "external/flv2mpeg4/src/dcprediction.c"
+SOURCE_FILES =+ "external/flv2mpeg4/src/flv2mpeg4.c"
 
 SOURCE_FILES =+ "${@bb.utils.contains("TARGET_ARCH", "sh4", "\
 output/linuxdvb_sh4.c \
@@ -73,7 +77,7 @@ output/writer/mipsel/wmv.c \
 output/writer/mipsel/vc1.c ", d)}"
 
 do_compile() {
-    ${CC} ${SOURCE_FILES} -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -I${S}/include -I${S}/external -I${D}/${libdir} -I${D}/${includedir} -lpthread -lavformat -lavcodec -lavutil -lswresample -o exteplayer3
+    ${CC} ${SOURCE_FILES} -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DHAVE_FLV2MPEG4_CONVERTER -I${S}/include -I${S}/external -I${S}/external/flv2mpeg4 -I${D}/${libdir} -I${D}/${includedir} -lpthread -lavformat -lavcodec -lavutil -lswresample -o exteplayer3
 }
 
 do_install() {

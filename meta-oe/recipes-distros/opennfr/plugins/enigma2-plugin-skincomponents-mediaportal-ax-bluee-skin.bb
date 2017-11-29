@@ -3,7 +3,7 @@ MAINTAINER = "opennfr"
 SECTION = "base"
 PRIORITY = "required"
 LICENSE = "proprietary"
-PACKAGE_ARCH = "all"
+inherit allarch
 
 require conf/license/license-gplv2.inc
 
@@ -14,7 +14,7 @@ PKGV = "2.1+git${GITPKGV}"
 VER ="2.1"
 PR = "r1"
 
-SRC_URI="git://github.com/n3wb13/Mediaportal-AX-Blue-Skin.git"
+SRC_URI="git://github.com/stein17/Mediaportal-AX-Blue-Skin.git"
 
 S = "${WORKDIR}/git"
 

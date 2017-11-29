@@ -29,7 +29,6 @@ DVBPROVIDER = "kernel"
 
 MACHINE_EXTRA_RRECOMMENDS = " \
     gstreamer1.0-plugin-dvbmediasink \
-    mtd-utils-native \
     "
 
 include conf/machine/include/autoload-filesystems.inc
@@ -47,9 +46,8 @@ UBI_VOLNAME = "rootfs"
 # image name in the zipfile, can be overridden by an image
 ZIPFILE_IMAGE_NAME ?= "firmware.img"
 
-IMAGE_DEPENDS_append = " \
-   createimage-${MACHINE}-native \
-    "
+IMAGE_DEPENDS_imgzip256 = "createimage-${MACHINE}-native mtd-utils-native"
+IMAGE_DEPENDS_imgzip1024 = "createimage-${MACHINE}-native mtd-utils-native"
 
 IMAGE_CMD_imgzip256 = " \
     mkfs.ubifs -r ${IMAGE_ROOTFS} -o ${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs_256.ubifs -m 2048 -e 126976 -c 4096; \
@@ -74,7 +72,6 @@ IMAGE_DEVICE_TABLES = ""
 PREFERRED_VERSION_wpa-supplicant = "0.5.8"
 PREFERRED_VERSION_rtl8192cu = "3.3.0"
 PREFERRED_VERSION_nfs-utils ?= "1.2.8"
-PREFERRED_VERSION_libtalloc = "2.0.1"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-cube"
 PREFERRED_PROVIDER_virtual/egl = "opengl"

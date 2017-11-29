@@ -18,7 +18,7 @@ RDEPENDS_${PN} = "\
     openhdf-spinner \
     curl \
     hddtemp \
-    busybox-cron \
+    virtual/cron \
     python-gdata \
     python-requests \
     python-mutagen \
@@ -50,6 +50,5 @@ RDEPENDS_${PN} = "\
     packagegroup-base-nfs \
     ", d)} \
     packagegroup-base-smbfs-client \
-    packagegroup-base-smbfs \
     bash \
     "

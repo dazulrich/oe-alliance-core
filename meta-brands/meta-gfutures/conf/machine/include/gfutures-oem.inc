@@ -16,6 +16,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'mutant11', 'HD11' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'mutant51', 'HD51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'ax51', 'HD51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'bre2ze4k', 'BRE2ZE 4K' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'axultra', 'HD51 ultra' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1000', 'VS1000' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1500', 'VS1500' , '', d)}\
 "
@@ -32,6 +33,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'mutant11', 'Mut@nt' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'mutant51', 'Mut@nt' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'ax51', 'AX 4K' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'bre2ze4k', 'WWIO' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'axultra', 'AX 4K' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1000', 'Vimastec' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1500', 'Vimastec' , '', d)}\
 "
@@ -48,6 +50,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'mutant11', 'hd11' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'mutant51', 'hd51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'ax51', 'hd51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'bre2ze4k', 'bre2ze4k' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'axultra', 'axultra' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1000', 'vs1000' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1500', 'vs1500' , '', d)}\
 "
@@ -64,6 +67,7 @@ ${@bb.utils.contains('MACHINEBUILD', 'mutant11', 'hd11' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'mutant51', 'hd51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'ax51', 'hd51' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'bre2ze4k', 'bre2ze4k' , '', d)}\
+${@bb.utils.contains('MACHINEBUILD', 'axultra', 'axultra' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1000', 'vs1000' , '', d)}\
 ${@bb.utils.contains('MACHINEBUILD', 'vimastec1500', 'vs1500' , '', d)}\
 "
@@ -77,7 +81,6 @@ DVBSKYPROVIDER = "kernel"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
     kernel-module-cdfs \
-    ${@bb.utils.contains('MACHINE_FEATURES', 'v3d', 'hd-v3ddriver-${MACHINE}', '',d)} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'qtegls', 'hd-qteglfs-platform', '',d)} \
     ${@bb.utils.contains('MACHINE_FEATURES', 'swap', 'hd-swapcreate', '',d)} \
     "
@@ -94,6 +97,7 @@ DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-dts --with-eac3 \
     ${@bb.utils.contains('MACHINEBUILD', 'mutant1265', '--with-h265 --with-vb6 --with-vb8 --with-spark' , '', d)} \
     ${@bb.utils.contains('MACHINEBUILD', 'mutant1500', '--with-h265 --with-vb6 --with-vb8 --with-spark' , '', d)} \
     ${@bb.utils.contains('MACHINEBUILD', 'mutant11', '--with-h265 --with-vb6 --with-vb8 --with-spark' , '', d)} \
+    ${@bb.utils.contains('MACHINE', 'hd530c', '--with-h265 --with-vb6 --with-vb8 --with-spark' , '', d)} \
     ${@bb.utils.contains('MACHINE', 'hd51', '--with-h265 --with-vb6 --with-vb8 --with-vb9 --with-spark' , '', d)} \
     ${@bb.utils.contains('MACHINE', 'vs1500', '--with-h265 --with-vb6 --with-vb8 --with-vb9 --with-spark' , '', d)} \
     ${@bb.utils.contains('MACHINE', 'vs1000', '--with-h265 --with-vb6 --with-vb8  --with-spark' , '', d)} \

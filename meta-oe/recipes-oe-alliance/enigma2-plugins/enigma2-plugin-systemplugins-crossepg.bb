@@ -4,14 +4,14 @@ LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=4fbd65380cdd255951079008b364516c"
 
 DEPENDS += "libxml2 zlib python swig-native curl"
-RDEPENDS_${PN} += "libcurl enigma2"
+RDEPENDS_${PN} += "libcurl enigma2 python-compression python-lzma xz"
 
 inherit gitpkgv
 
 SRCREV = "${AUTOREV}"
-PV = "0.8.2+gitr${SRCPV}"
-PKGV = "0.8.2+gitr${GITPKGV}"
-PR = "r6"
+PV = "0.8.5+gitr${SRCPV}"
+PKGV = "0.8.5+gitr${GITPKGV}"
+PR = "r0"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
@@ -27,6 +27,7 @@ CFLAGS_append = " ${@bb.utils.contains('BRAND_OEM', 'xp', ' -DNO_DVB_POLL' , '',
 CFLAGS_append = " ${@bb.utils.contains('BRAND_OEM', 'skylake', ' -DNO_DVB_POLL' , '', d)}"
 CFLAGS_append = " ${@bb.utils.contains('BRAND_OEM', 'gfutures', ' -DNO_DVB_POLL' , '', d)}"
 CFLAGS_append = " ${@bb.utils.contains('BRAND_OEM', 'formuler', ' -DNO_DVB_POLL' , '', d)}"
+CFLAGS_append = " ${@bb.utils.contains('BRAND_OEM', 'airdigital', ' -DNO_DVB_POLL' , '', d)}"
 
 INSANE_SKIP_${PN} += "already-stripped ldflags"
 

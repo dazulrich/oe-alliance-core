@@ -1,13 +1,16 @@
 #IMAGE_CLASSES += "hd-emmc_image_single"
 IMAGE_CLASSES += "hd-emmc_image_multi"
 
+MACHINE_FEATURES += "qthbbtv"
+DISTRO_FEATURES_remove = "directfb gtk-directfb"
+
 IMAGE_FSTYPES += "hd-emmc"
 IMAGE_ROOTFS_SIZE ?= "294912"
 
 TARGET_ARCH = "arm"
 DEFAULTTUNE = "cortexa15hf-neon-vfpv4"
 
-PREFERRED_VERSION_linux-gfutures = "4.10.6"
+PREFERRED_VERSION_linux-gfutures = "4.10.12"
 PREFERRED_VERSION_linux-libc-headers = "4.10"
 
 IMAGE_CMD_hd-emmc_append = "\

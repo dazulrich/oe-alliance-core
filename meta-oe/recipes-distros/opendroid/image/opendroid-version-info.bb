@@ -26,10 +26,12 @@ do_install() {
     install -d ${D}/etc
     echo "box_type=${MACHINEBUILD}" > ${D}/etc/image-version
     echo "build_type=${BUILDTYPE}" >> ${D}/etc/image-version
+    echo "machine_brand=${MACHINE_BRAND}" >> ${D}/etc/image-version
+    echo "machine_name=${MACHINE_NAME}" >> ${D}/etc/image-version
     echo "version=${IMAGE_VERSION}" >> ${D}/etc/image-version
     echo "build=${BUILD_VERSION}" >> ${D}/etc/image-version
     echo "date=${DATETIME}" >> ${D}/etc/image-version
-    echo "comment=opendroid-team" >> ${D}/etc/image-version
+    echo "comment=OpenDroid-team" >> ${D}/etc/image-version
     echo "target=9" >> ${D}/etc/image-version
     echo "creator=OpenDroid-team" >> ${D}/etc/image-version
     echo "url=${URL}" >> ${D}/etc/image-version

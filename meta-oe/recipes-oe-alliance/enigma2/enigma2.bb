@@ -109,7 +109,7 @@ GST_GOOD_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-good-rtp \
     gstreamer1.0-plugins-good-rtpmanager \
     gstreamer1.0-plugins-good-rtsp \
-    gstreamer1.0-plugins-good-souphttpsrc \
+    gstreamer1.0-plugins-good-soup \
     gstreamer1.0-plugins-good-udp \
     gstreamer1.0-plugins-good-wavparse \
     gstreamer1.0-plugins-good-wavpack \
@@ -163,7 +163,6 @@ GST_UGLY_RDEPS = "${@bb.utils.contains('GST_VERSION', '1.0', ' \
     gstreamer1.0-plugins-ugly-asf \
     gstreamer1.0-plugins-ugly-cdio \
     gstreamer1.0-plugins-ugly-dvdsub \
-    gstreamer1.0-plugins-ugly-mad \
     ', ' \
     gst-plugins-ugly-amrnb \
     gst-plugins-ugly-amrwbdec \
@@ -215,15 +214,12 @@ DESCRIPTION_append_enigma2-plugin-systemplugins-networkwizard = "provides easy s
 # Note that these tools lack recipes
 RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit python-imaging ${DEMUXTOOL}"
 RDEPENDS_enigma2-plugin-systemplugins-hotplug = "hotplug-e2-helper"
-CONFFILES_enigma2-plugin-extensions-openxtareader = "/usr/lib/enigma2/python/Plugins/Extensions/OpenXtaReader/db/favoriten"
-RDEPENDS_enigma2-plugin-extensions-openxtareader = "python-lxml"
 RDEPENDS_enigma2-plugin-systemplugins-fsblupdater = "python-distutils"
 
 inherit autotools-brokensep gitpkgv pkgconfig pythonnative
 
 PV = "${IMAGE_VERSION}+git${SRCPV}"
 PKGV = "${IMAGE_VERSION}+git${GITPKGV}"
-PR = "r4"
 
 SRC_URI = "${ENIGMA2_URI}"
 
@@ -253,10 +249,6 @@ SRC_URI_append_vuduo = " \
     file://duo_VFD.patch \
     "
 
-SRC_URI_append_openatv = " \
-    file://tuxbox_fix_DVB_API_VERSION_check_for_gcc5.patch \
-    "
-
 SRC_URI_append_wetekplay2 = " \
     ${@bb.utils.contains("DISTRO_NAME", "openatv", "file://0001-have-64-bit-action-long-int-update.patch", "", d)} \
     "
@@ -278,9 +270,6 @@ SRC_URI_append_opendroid = " \
     file://tuxbox_fix_DVB_API_VERSION_check_for_gcc5.patch \
     "
 SRC_URI_append_egami = " \
-    file://tuxbox_fix_DVB_API_VERSION_check_for_gcc5.patch \
-    "
-SRC_URI_append_openxta = " \
     file://tuxbox_fix_DVB_API_VERSION_check_for_gcc5.patch \
     "
 
@@ -313,6 +302,7 @@ EXTRA_OECONF = " \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd128", "--with-colorlcd128" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd220", "--with-colorlcd220" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd390", "--with-colorlcd390" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd400", "--with-colorlcd400" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd480", "--with-colorlcd480" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd720", "--with-colorlcd720" , "", d)} \
@@ -324,6 +314,7 @@ EXTRA_OECONF = " \
     ${@bb.utils.contains("MACHINE_FEATURES", "fullgraphiclcd", "--with-fullgraphiclcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "gigabluelcd", "--with-gigabluelcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "nolcd", "--with-nolcd" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "7segment", "--with-7segment" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "--with-libvugles2" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "osdanimation", "--with-osdanimation" , "", d)} \
     "
@@ -392,3 +383,7 @@ python populate_packages_prepend() {
     enigma2_podir = bb.data.expand('${datadir}/enigma2/po', d)
     do_split_packages(d, enigma2_podir, '^(\w+)/[a-zA-Z0-9_/]+.*$', 'enigma2-locale-%s', '%s', recursive=True, match_path=True, prepend=True, extra_depends="enigma2")
 }
+
+inherit binary-compress
+
+FILES_COMPRESS_openatv = "${@bb.utils.contains("MACHINE_FEATURES", "smallflash", "${bindir}/enigma2", "", d)}"

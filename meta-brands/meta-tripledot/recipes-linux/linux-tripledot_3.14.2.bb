@@ -8,10 +8,11 @@ SRCDATE_vg5000 = "20141208"
 SRCDATE_vg1000 = "20141208"
 SRCDATE_vg2000 = "20141208"
 SRCDATE_yh7362 = "20160217"
+SRCDATE_yh62tc = "20170821"
 
 inherit kernel machine_kernel_pr
 
-MACHINE_KERNEL_PR_append = ".2"
+MACHINE_KERNEL_PR_append = ".4"
 
 SRC_URI[jj7362.md5sum] = "8e0385481057a214f0635c8b947dbb7d"
 SRC_URI[jj7362.sha256sum] = "6c782f1003a48c508832660b1053d68f3c616f5b1ece373d06125a0e7f47d23a"
@@ -23,6 +24,8 @@ SRC_URI[vg1000.md5sum] = "58ab26c0ae0c791ce7e962f7f1ae4c3c"
 SRC_URI[vg1000.sha256sum] = "d53df9471aea4ae35644d96ef8c8425ad82001e0de8dc5b9fdac8f4b983d0232"
 SRC_URI[yh7362.md5sum] = "23781bce0ab453e7c18092f1f6dd2e2b"
 SRC_URI[yh7362.sha256sum] = "bf31e5b1c6e9295bdcd531b94a0f327f70b07bc901cd68dbc1730f04274a86d4"
+SRC_URI[yh62tc.md5sum] = "23781bce0ab453e7c18092f1f6dd2e2b"
+SRC_URI[yh62tc.sha256sum] = "bf31e5b1c6e9295bdcd531b94a0f327f70b07bc901cd68dbc1730f04274a86d4"
 
 LIC_FILES_CHKSUM = "file://${WORKDIR}/linux-${PV}-base/COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
@@ -59,6 +62,7 @@ SRC_URI += "http://source.mynonpublic.com/tripledot/${MACHINE}-linux-${PV}-base-
 	file://0001-STV-Add-SNR-Signal-report-parameters.patch \
 	file://0001-stv090x-optimized-TS-sync-control.patch \
 	file://blindscan2.patch \
+	file://genksyms_fix_typeof_handling.patch \
 	"
 
 S = "${WORKDIR}/linux-${PV}-base"

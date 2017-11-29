@@ -13,11 +13,10 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 do_rootfs[deptask] = "do_rm_work"
 
 IMAGE_INSTALL = "openspa-base \
-    ${@bb.utils.contains("MACHINE_FEATURES", "singlecore", "", \
+    ${@bb.utils.contains("MACHINE_FEATURES", "no-cl-svr", "", \
     " \
     packagegroup-base-smbfs-client \
     packagegroup-base-smbfs-server \
-    packagegroup-base-smbfs \
     packagegroup-base-nfs \
     ", d)} \
     "

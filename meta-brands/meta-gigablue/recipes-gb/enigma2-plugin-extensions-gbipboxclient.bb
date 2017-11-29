@@ -12,7 +12,7 @@ SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 VER ="1.0"
-PR = "r0"
+PR = "r1"
 
 SRC_URI="git://github.com/openmips/gbremote-client.git"
 
@@ -20,9 +20,7 @@ S = "${WORKDIR}/git"
 
 DEPENDS = "python"
 
-RDEPENDS_${PN} = "cifs"
-RCONFLICTS_${PN} = "enigma2-plugin-systemplugins-gbipboxclient"
-RREPLACES_${PN} = "enigma2-plugin-systemplugins-gbipboxclient"
+RDEPENDS_${PN} = "cifs-utils"
 
 EXTRA_OECONF = "\
     --with-po \

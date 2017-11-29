@@ -1,4 +1,4 @@
-PR .= ".1"
+PR .= ".5"
 
 PACKAGES += " \
             ${@bb.utils.contains("DISTRO_FEATURES", "appletalk", "packagegroup-base-appletalk", "", d)} \
@@ -12,7 +12,7 @@ RDEPENDS_packagegroup-base := "${@oe_filter_out('packagegroup-base-nfs', '${RDEP
 RDEPENDS_packagegroup-base := "${@oe_filter_out('packagegroup-base-smbfs', '${RDEPENDS_packagegroup-base}', d)}"
 
 RDEPENDS_packagegroup-base-smbfs += "\
-    cifs \
+    cifs-utils \
     "
 
 RDEPENDS_packagegroup-base-smbfs-client = "\
@@ -21,7 +21,6 @@ RDEPENDS_packagegroup-base-smbfs-client = "\
     "
 
 RDEPENDS_packagegroup-base-smbfs-server = "\
-    packagegroup-base-smbfs \
     samba-base \
     "
 
@@ -29,14 +28,14 @@ RDEPENDS_packagegroup-base-smbfs-utils = "\
     samba \
     "
 
-RDEPENDS_packagegroup-base-samba = "\
+RRECOMMENDS_packagegroup-base-samba = "\
     packagegroup-base-smbfs \
     packagegroup-base-smbfs-client \
     packagegroup-base-smbfs-server \
     packagegroup-base-smbfs-utils \
     "
 
-RRRECOMMENDS_packagegroup-base-appletalk = "\
+RRECOMMENDS_packagegroup-base-appletalk = "\
     kernel-module-appletalk \
     kernel-module-llc \
     kernel-module-psnap"
@@ -47,3 +46,6 @@ RDEPENDS_packagegroup-base-appletalk = "\
 RDEPENDS_packagegroup-base-nfs += "\
     nfs-utils \
     nfs-utils-client"
+
+RDEPENDS_packagegroup-base-zeroconf += "\
+    libnss-llmnr"

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d
 ALLOW_EMPTY_${PN} = "1"
 
 PV = "1.0"
-PR = "r21"
+PR = "r24"
 
 inherit packagegroup
 
@@ -20,7 +20,12 @@ RRECOMMENDS_${PN} = "\
     enigma2-plugin-systemplugins-crossepg \
     enigma2-plugin-skins-xionhdf \
     enigma2-plugin-skins-army-mod \
+    enigma2-plugin-extensions-blurayplayer \
     enigma2-plugin-systemplugins-autobouquetsmaker \
     enigma2-plugin-skins-nblack51-hdfmod \
     enigma2-plugin-skins-ax-blue-fhd-4hdf \
+    enigma2-plugin-skins-blue-line-oct-4hdf \
+    enigma2-plugin-skincomponents-bmediacenter-ax-blue-skin \
+    enigma2-plugin-skincomponents-mediaportal-ax-blue-skin \
+    enigma2-plugin-skincomponents-mediaportal-blue-line-skin \
     "
